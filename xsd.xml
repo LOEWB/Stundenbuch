@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+ <xs:element name="actions">
+              <xs:complexType>
+                     <xs:sequence>
+                            <xs:element name="action" maxOccurs="unbounded">
+                                   <xs:complexType>
+                                          <xs:sequence>
+                                          		<xs:choice>
+                                          			<xs:element name="order" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                               <xs:sequence>
+                                                                      <xs:element name="clientId" type="xs:int"></xs:element>
+                                                                      <xs:element name="articleId" maxOccurs="unbounded" type="xs:int"></xs:element>
+                                                                  </xs:sequence>
+                                                           </xs:complexType>
+                                                    </xs:element>
+
+                                                    <xs:element name="supply" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                               <xs:sequence>
+                                                                      <xs:element name="supplierId" type="xs:int"></xs:element>
+                                                                      <xs:element name="articlesList" maxOccurs="unbounded">
+                                                                      		<xs:complexType>
+                                                                      			<xs:sequence>
+	                                                                      			<xs:element name="article">
+	                                                                      				<xs:complexType>
+	                                                                      					<xs:element name="articleId" type="xs:int"></xs:element>
+	                                                                      					<xs:element name="quantity" type="xs:int"></xs:element>
+	                                                                      					<xs:element name="articlePrice" type="xs:long"></xs:element>
+	                                                                      				</xs:complexType>
+                                                                      				</xs:element>
+                                                                      			</xs:sequence>
+                                                                      		</xs:complexType>
+                                                                      </xs:element>
+                                                                  </xs:sequence>
+                                                           </xs:complexType>
+                                                    </xs:element>
+                                          		</xs:choice>
+                                                
+                                      </xs:complexType>
+                               </xs:element>
+                        </xs:sequence>
+                 </xs:complexType>
+          </xs:element>
+   </xs:schema>
