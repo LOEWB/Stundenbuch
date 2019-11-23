@@ -4,6 +4,7 @@ import controller.Controller;
 
 import java.io.IOException;
 import java.nio.file.*;
+import java.util.Queue;
 
 import static java.nio.file.StandardWatchEventKinds.*;
 
@@ -13,6 +14,8 @@ public class Fetching implements Runnable {
     private WatchService watcher = null;
     private WatchKey watchKey ;
     private boolean fetchingBool = true;
+    // Docs queue
+    //Queue<>
 
 
     public Fetching(Controller c) {

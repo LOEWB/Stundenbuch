@@ -1,106 +1,96 @@
 <?xml version="1.0"?>
 
-<actions>
-	<!-- clients orders -->
-	<action>
-		<!-- a client order -->
-		<order>
-			<clientId>
-				135
-			</clientId>
+<actions id="1">
+    <!-- clients orders -->
+    <action>
+        <!-- a client order -->
+        <order>
+            <clientId>
+                135
+            </clientId>
 
-			<articleId>
-				2902398
-			</articleId>
-			<articleId>
-				2902398
-			</articleId>
-			<articleId>
-				4623987
-			</articleId>
-		</order>
+            <articleId>
+                2902398
+            </articleId>
+            <articleId>
+                2902398
+            </articleId>
+            <articleId>
+                4623987
+            </articleId>
+        </order>
 
-		<!-- another client order -->
-		<order>
-			<clientId>
-				135
-			</clientId>
+        <!-- another client order -->
+        <order>
+            <clientId>
+                135
+            </clientId>
 
-			<articleId>
-				2902398
-			</articleId>
-		</order>
-	</action>
+            <articleId>
+                2902398
+            </articleId>
+        </order>
+    </action>
 
-	<!-- supplier action -->
-	<action>
-		<!-- a supplier action -->
-		<supply>
-				<supplierId>
-					123
-				</supplierId>
+    <!-- supplier action -->
+    <action>
+        <!-- a supplier action -->
+        <supply>
+            <supplierId>
+                123
+            </supplierId>
 
-				<articlesList>
-					<article>
-						<articleId>
-							1123222
-						</articleId>
-						<quantity>
-							10
-						</quantity>
-						<articlePrice>
-							8.99
-						</articlePrice>
-					</article>
-					
-					<article>
-						<articleId>
-							1123222
-						</articleId>
-						<quantity>
-							10
-						</quantity>
-						<articlePrice>
-							8.99
-						</articlePrice>
-					</article>
-				</articlesList>
-			
-				<articlesList>
-					<article>
-						<articleId>
-							1123222
-						</articleId>
-						<quantity>
-							10
-						</quantity>
-						<articlePrice>
-							8.99
-						</articlePrice>
-					</article>
-					
-					<article>
-						<articleId>
-							1123222
-						</articleId>
-						<quantity>
-							10
-						</quantity>
-						<articlePrice>
-							8.99
-						</articlePrice>
-					</article>
-				</articlesList>
-		</supply>
-	</action>
+            <articlesList>
+                <article>
+                    <articleId>
+                        1123222
+                    </articleId>
+                    <quantity>
+                        10
+                    </quantity>
+                    <articlePrice>
+                        8.99
+                    </articlePrice>
+                </article>
 
+                <article>
+                    <articleId>
+                        1123222
+                    </articleId>
+                    <quantity>
+                        10
+                    </quantity>
+                    <articlePrice>
+                        8.99
+                    </articlePrice>
+                </article>
+            </articlesList>
 
-	<action>
-	</action>
+            <articlesList>
+                <article>
+                    <articleId>
+                        1123222
+                    </articleId>
+                    <quantity>
+                        10
+                    </quantity>
+                    <articlePrice>
+                        8.99
+                    </articlePrice>
+                </article>
 
-	<action>
-	</action>
-
-	<action>
-	</action>
+                <article>
+                    <articleId>
+                        1123222
+                    </articleId>
+                    <quantity>
+                        10
+                    </quantity>
+                    <articlePrice>
+                        8.99
+                    </articlePrice>
+                </article>
+            </articlesList>
+        </supply>
+    </action>
 </actions>
