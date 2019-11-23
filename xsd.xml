@@ -1,51 +1,51 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 
-    <xs:element name="actions">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element name="action" maxOccurs="unbounded">
-                    <xs:complexType>
-                        <xs:sequence>
-                            <xs:choice>
-                                <xs:element name="order" maxOccurs="unbounded">
-                                    <xs:complexType>
-                                        <xs:sequence>
-                                            <xs:element name="clientId" type="xs:integer"/>
-                                            <xs:element name="articleId" maxOccurs="unbounded"
-                                                        type="xs:integer"/>
-                                        </xs:sequence>
-                                    </xs:complexType>
-                                </xs:element>
+    <xsd:element name="actions">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="action" maxOccurs="unbounded">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:choice>
+                                <xsd:element name="order" maxOccurs="unbounded">
+                                    <xsd:complexType>
+                                        <xsd:sequence>
+                                            <xsd:element name="clientId" type="xsd:integer"/>
+                                            <xsd:element name="articleId" maxOccurs="unbounded"
+                                                        type="xsd:integer"/>
+                                        </xsd:sequence>
+                                    </xsd:complexType>
+                                </xsd:element>
 
-                                <xs:element name="supply" maxOccurs="unbounded">
-                                    <xs:complexType>
-                                        <xs:sequence>
-                                            <xs:element name="supplierId" type="xs:integer"/>
-                                            <xs:element name="articlesList" maxOccurs="unbounded">
-                                                <xs:complexType>
-                                                    <xs:sequence>
-                                                        <xs:element name="article" maxOccurs="unbounded">
-                                                            <xs:complexType>
-                                                                <xs:sequence>
-                                                                    <xs:element name="articleId" type="xs:integer"/>
-                                                                    <xs:element name="quantity" type="xs:integer"/>
-                                                                    <xs:element name="articlePrice" type="xs:decimal"/>
-                                                                </xs:sequence>
-                                                            </xs:complexType>
-                                                        </xs:element>
-                                                    </xs:sequence>
-                                                </xs:complexType>
-                                            </xs:element>
-                                        </xs:sequence>
-                                    </xs:complexType>
-                                </xs:element>
-                            </xs:choice>
-                        </xs:sequence>
-                    </xs:complexType>
-                </xs:element>
-            </xs:sequence>
-            <xs:attribute name="id" type="xs:integer" use="required"/>
-        </xs:complexType>
-    </xs:element>
-</xs:schema>
+                                <xsd:element name="supply" maxOccurs="unbounded">
+                                    <xsd:complexType>
+                                        <xsd:sequence>
+                                            <xsd:element name="supplierId" type="xsd:integer"/>
+                                            <xsd:element name="articlesList" maxOccurs="unbounded">
+                                                <xsd:complexType>
+                                                    <xsd:sequence>
+                                                        <xsd:element name="article" maxOccurs="unbounded">
+                                                            <xsd:complexType>
+                                                                <xsd:sequence>
+                                                                    <xsd:element name="articleId" type="xsd:integer"/>
+                                                                    <xsd:element name="quantity" type="xsd:integer"/>
+                                                                    <xsd:element name="articlePrice" type="xsd:decimal"/>
+                                                                </xsd:sequence>
+                                                            </xsd:complexType>
+                                                        </xsd:element>
+                                                    </xsd:sequence>
+                                                </xsd:complexType>
+                                            </xsd:element>
+                                        </xsd:sequence>
+                                    </xsd:complexType>
+                                </xsd:element>
+                            </xsd:choice>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+            </xsd:sequence>
+            <xsd:attribute name="id" type="xsd:integer" use="required"/>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>

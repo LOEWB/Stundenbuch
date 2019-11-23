@@ -7,6 +7,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.Fetching;
+import model.XmlHandling;
+
+import java.io.File;
 
 public class View extends Application {
 
