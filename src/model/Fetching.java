@@ -2,9 +2,11 @@ package model;
 
 import controller.Controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.Queue;
+import java.util.concurrent.ArrayBlockingQueue;
 
 import static java.nio.file.StandardWatchEventKinds.*;
 
@@ -15,8 +17,10 @@ public class Fetching implements Runnable {
     private WatchKey watchKey ;
     private boolean fetchingBool = true;
     // Docs queue
-    private Queue<String> actionPathQueue;
+    private ArrayBlockingQueue<File> actionPathQueue;
     private XmlHandling xmlHandler;
+
+    private final static int QUEUE_SIZE = 100;
 
 
     public Fetching(Controller c) {
@@ -60,10 +64,8 @@ public class Fetching implements Runnable {
                 Path filename = ev.context();
 
                 // Adding new file path to queue
-                xmlHandler = new XmlHandling();
-                xmlHandler.processXml(filename.toFile());
-
-                System.out.format("new file in dir : %s%n", filename);
+                actionPathQueue.add(filename.toFile());
+                System.out.println("File added to queue");
             }
 
             // Key reset
@@ -76,21 +78,29 @@ public class Fetching implements Runnable {
 
     private void startQueueProcessing() {
         xmlHandler = new XmlHandling();
-        new Thread() {
-            @Override
-            public void run() {
-                super.run();
-            }
-        }.start();
-        while(fetchingBool) {
 
-        }
+        new Thread(() -> {
+            File currFile;
+            System.out.println("Queue attempting for a file");
+            while(fetchingBool) {
+                try {
+                    currFile = actionPathQueue.take();
+                    System.out.println("Processing file in queue");
+                    xmlHandler.processXml(currFile);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
     }
 
     @Override
     public void run() {
-        startFetching();
+        xmlHandler = new XmlHandling();
+        actionPathQueue = new ArrayBlockingQueue<>(QUEUE_SIZE);
         startQueueProcessing();
+        startFetching();
     }
 
     public boolean isFetchingBool() {

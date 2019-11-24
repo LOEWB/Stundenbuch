@@ -16,6 +16,8 @@ import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathFactory;
 import java.io.File;
 
+import static java.lang.Thread.sleep;
+
 public class XmlHandling {
 
     private Validator validator;
@@ -54,6 +56,11 @@ public class XmlHandling {
             XPath xpath = xpathFactory.newXPath();
             String exp = "/actions/action/order[2]/clientId";
             String str = xpath.evaluate(exp, root);
+
+            System.out.println("traitement en cours...");
+            sleep(3000);
+
+
             System.out.println(xmlSource.getSystemId() + " is valid");
             System.out.println("client id" + str);
         } catch (Exception e) {
