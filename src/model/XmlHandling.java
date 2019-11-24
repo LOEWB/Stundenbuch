@@ -1,20 +1,26 @@
 package model;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
 
 import javax.xml.XMLConstants;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathFactory;
 import java.io.File;
 
 public class XmlHandling {
 
     private Validator validator;
     private File xsdFile;
+    private File xmlFile;
     private Source xmlSource;
     private Document doc;
 
@@ -35,10 +41,21 @@ public class XmlHandling {
     }
 
     public void processXml(File file) {
+        xmlFile = file;
         xmlSource = new StreamSource(file);
         try {
             validator.validate(xmlSource);
+
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document doc = builder.parse(xmlFile);
+            Element root = doc.getDocumentElement();
+            XPathFactory xpathFactory = XPathFactory.newInstance();
+            XPath xpath = xpathFactory.newXPath();
+            String exp = "/actions/action/order[2]/clientId";
+            String str = xpath.evaluate(exp, root);
             System.out.println(xmlSource.getSystemId() + " is valid");
+            System.out.println("client id" + str);
         } catch (Exception e) {
             System.out.println(xmlSource.getSystemId() + " is NOT valid reason:" + e);
         }
