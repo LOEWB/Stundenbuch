@@ -32,11 +32,11 @@ public class order {
 	public static void setPrice(Integer price) {
 		order.price = price;
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 	
 	
 }

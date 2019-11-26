@@ -21,7 +21,7 @@ public class Fetching implements Runnable {
     private XmlHandling xmlHandler;
 
     private final static int QUEUE_SIZE = 100;
-
+    private final static String STOP_MARKER = "INTERRUPT_QUEUE";
 
     public Fetching(Controller c) {
         this.controller = c;
@@ -110,6 +110,7 @@ public class Fetching implements Runnable {
     public void interrupt() {
         this.fetchingBool = false;
         try {
+            actionPathQueue.add(new File(STOP_MARKER));
             this.watcher.close();
         } catch (IOException e) {
             e.printStackTrace();
