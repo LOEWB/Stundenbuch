@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  Dim 24 nov. 2019 à 13:42
+-- Généré le :  mar. 26 nov. 2019 à 22:54
 -- Version du serveur :  10.1.32-MariaDB
 -- Version de PHP :  7.2.5
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `article` (
-  `id_article` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `id_commande` int(11) NOT NULL,
   `id_produit` int(11) NOT NULL,
   `price` int(11) NOT NULL,
@@ -39,18 +39,16 @@ CREATE TABLE `article` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `client`
+-- Structure de la table `customer`
 --
 
-CREATE TABLE `client` (
-  `id_client` int(11) NOT NULL,
-  `prenom_client` varchar(50) NOT NULL,
-  `nom_client` varchar(50) NOT NULL,
-  `ville` varchar(50) NOT NULL,
-  `pays` varchar(50) NOT NULL
+CREATE TABLE `customer` (
+  `id` int(11) NOT NULL,
+  `firstname_client` varchar(50) NOT NULL,
+  `lastname_client` varchar(50) NOT NULL,
+  `city` varchar(50) NOT NULL,
+  `country` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
 
 -- --------------------------------------------------------
 
@@ -59,9 +57,9 @@ CREATE TABLE `client` (
 --
 
 CREATE TABLE `order` (
-  `id_order` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `date_order` date NOT NULL,
-  `id_client` int(11) NOT NULL,
+  `id_customer` int(11) NOT NULL,
   `price` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -72,8 +70,8 @@ CREATE TABLE `order` (
 --
 
 CREATE TABLE `product` (
-  `id_product` int(11) NOT NULL,
-  `nom` varchar(50) NOT NULL,
+  `id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
   `id_supply` int(11) NOT NULL,
   `price` int(11) NOT NULL,
   `dispo` int(11) NOT NULL
@@ -86,13 +84,13 @@ CREATE TABLE `product` (
 --
 
 CREATE TABLE `supply` (
-  `id_supplier` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `id_article` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
-  `id_produit` int(11) NOT NULL,
+  `id_product` int(11) NOT NULL,
   `price_article` int(11) NOT NULL,
-  `ville` varchar(50) NOT NULL,
-  `pays` varchar(50) NOT NULL
+  `city` varchar(50) NOT NULL,
+  `country` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -103,35 +101,35 @@ CREATE TABLE `supply` (
 -- Index pour la table `article`
 --
 ALTER TABLE `article`
-  ADD PRIMARY KEY (`id_article`,`price`,`quantity`),
+  ADD PRIMARY KEY (`id`,`price`,`quantity`),
   ADD KEY `article_ibfk_1` (`id_commande`),
   ADD KEY `id_produit` (`id_produit`);
 
 --
--- Index pour la table `client`
+-- Index pour la table `customer`
 --
-ALTER TABLE `client`
-  ADD PRIMARY KEY (`id_client`);
+ALTER TABLE `customer`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Index pour la table `order`
 --
 ALTER TABLE `order`
-  ADD PRIMARY KEY (`id_order`),
-  ADD KEY `id_client` (`id_client`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_client` (`id_customer`);
 
 --
 -- Index pour la table `product`
 --
 ALTER TABLE `product`
-  ADD PRIMARY KEY (`id_product`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `id_supply` (`id_supply`);
 
 --
 -- Index pour la table `supply`
 --
 ALTER TABLE `supply`
-  ADD PRIMARY KEY (`id_supplier`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `id_article` (`id_article`);
 
 --
@@ -142,19 +140,19 @@ ALTER TABLE `supply`
 -- AUTO_INCREMENT pour la table `article`
 --
 ALTER TABLE `article`
-  MODIFY `id_article` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id_product` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `supply`
 --
 ALTER TABLE `supply`
-  MODIFY `id_supplier` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Contraintes pour les tables déchargées
@@ -164,26 +162,26 @@ ALTER TABLE `supply`
 -- Contraintes pour la table `article`
 --
 ALTER TABLE `article`
-  ADD CONSTRAINT `article_ibfk_1` FOREIGN KEY (`id_commande`) REFERENCES `order` (`id_order`),
-  ADD CONSTRAINT `article_ibfk_2` FOREIGN KEY (`id_produit`) REFERENCES `product` (`id_product`);
+  ADD CONSTRAINT `article_ibfk_1` FOREIGN KEY (`id_commande`) REFERENCES `order` (`id`),
+  ADD CONSTRAINT `article_ibfk_2` FOREIGN KEY (`id_produit`) REFERENCES `product` (`id`);
 
 --
 -- Contraintes pour la table `order`
 --
 ALTER TABLE `order`
-  ADD CONSTRAINT `order_ibfk_1` FOREIGN KEY (`id_client`) REFERENCES `client` (`id_client`);
+  ADD CONSTRAINT `order_ibfk_1` FOREIGN KEY (`id_customer`) REFERENCES `customer` (`id`);
 
 --
 -- Contraintes pour la table `product`
 --
 ALTER TABLE `product`
-  ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`id_supply`) REFERENCES `supply` (`id_supplier`);
+  ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`id_supply`) REFERENCES `supply` (`id`);
 
 --
 -- Contraintes pour la table `supply`
 --
 ALTER TABLE `supply`
-  ADD CONSTRAINT `supply_ibfk_1` FOREIGN KEY (`id_article`) REFERENCES `article` (`id_article`);
+  ADD CONSTRAINT `supply_ibfk_1` FOREIGN KEY (`id_article`) REFERENCES `article` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -40,6 +40,12 @@ public class product {
 	public void setDisp(Boolean disp) {
 		this.disp = disp;
 	}
+	public Long getId_product() {
+		return id_product;
+	}
+	public void setId_product(Long id_product) {
+		this.id_product = id_product;
+	}
 	
 
 

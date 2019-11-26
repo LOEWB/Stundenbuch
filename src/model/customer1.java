@@ -2,26 +2,21 @@ package model;
 
 
 
-public class client {
+public class customer1 {
 	
-	
-	
-	
-	
-	private Long id_client;
+	private Long id;
 	  private String prenom_client; 
 	  private String nom_client; 
 	  private String ville;
 	  private String pays; 
+	  
 
-	  
-	  
-	public Long getId_client() {
-		return id_client;
-	}
-	public void setId_client(Long id_client) {
-		this.id_client = id_client;
-	}
+	  public Long getId() {
+			return id;
+		}
+		public void setId(Long id) {
+			this.id = id;
+		}
 	public String getPrenom_client() {
 		return prenom_client;
 	}
@@ -46,6 +41,7 @@ public class client {
 	public void setPays(String pays) {
 		this.pays = pays;
 	}
+	
 	
 
 

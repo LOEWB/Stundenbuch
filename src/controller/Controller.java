@@ -116,17 +116,37 @@ public class Controller implements Initializable {
 
 		columnNameA.setCellValueFactory((new PropertyValueFactory<Article, String>("name")));
 		columnPrice.setCellValueFactory(new PropertyValueFactory<Article, String>("price"));
-
 	}
+	
+	
+	
 
-	public void update(supply sup) {
+	public void add_supply(supply sup) {
+		Connection con = new ConnectionBD().connexion();
+		String sql = "inser into order(id,id_article,quantity,price_article)"  + " values (?, ?, ?, ?, ?)";
+		try {
+			PreparedStatement stm = con.prepareStatement(sql);
+			stm.setInt(1,supply.id);
+			stm.setInt(2,supply.id_article);
+			stm.setInt(3,supply.quantity);
+			stm.setInt(4,supply.price_article);
+			int row = stm.executeUpdate();
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		}
+	
+	
+	
+	public void update_supply(supply sup) {
 		Connection con = new ConnectionBD().connexion();
 		
-		String sql = "update sup set id_supply = ?,id_article = ?,quantity = ?,price_article = ? where id_supply = ?";
+		String sql = "update sup set id= ?,id_article=?,quantity = ?,price_article = ? where id= ?";
 
 		try {
 			PreparedStatement stm = con.prepareStatement(sql);
-			stm.setInt(1,supply.id_supplier);
+			stm.setInt(1,supply.id);
 			stm.setInt(2,supply.id_article);
 			stm.setInt(3,supply.quantity);
 			stm.setInt(4,supply.price_article);
@@ -136,21 +156,81 @@ public class Controller implements Initializable {
 			e.printStackTrace();
 		}}
 	
-	public void update2(order ord) {
+	
+	public void delete_supply(supply sup) {
 		Connection con = new ConnectionBD().connexion();
 		
-		String sql = "update ord set id_order = ?,date_order = ?,id_client = ?,price = ? where id_order = ?";
+	      String sql = "delete from supply where id= ?";
 
 		try {
 			PreparedStatement stm = con.prepareStatement(sql);
-			stm.setInt(1,order.id_order);
+			stm.setInt(1,supply.id);
+
+	
+			int row = stm.executeUpdate();
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		}
+	
+	
+	
+	
+	
+	public void add_order(order ord) {
+		Connection con = new ConnectionBD().connexion();
+		
+		String sql = "inser into order(id,date_order,id_client,price)"  + " values (?, ?, ?, ?, ?)";
+
+
+		try {
+			PreparedStatement stm = con.prepareStatement(sql);
+			stm.setInt(1,order.id);
 			stm.setDate(2,order.date_order);
 			stm.setInt(3,order.id_client);
 			stm.setInt(4,order.price);
 			
 			int row = stm.executeUpdate();
 		
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		}
+	
+	public void update_order(order ord) {
+		Connection con = new ConnectionBD().connexion();
+		
+		String sql = "update ord set id = ?,date_order = ?,id_client = ?,price = ? where id= ?";
+
+		try {
+			PreparedStatement stm = con.prepareStatement(sql);
+			stm.setInt(1,order.id);
+			stm.setDate(2,order.date_order);
+			stm.setInt(3,order.id_client);
+			stm.setInt(4,order.price);
+			
+			int row = stm.executeUpdate();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}}
+	
+	
+	
+	public void delete_order(order ord) {
+		Connection con = new ConnectionBD().connexion();
+		
+		String sql = "delete from supply where id= ?";
+
+		try {
+			PreparedStatement stm = con.prepareStatement(sql);
+			stm.setInt(1,order.id);
+			int row = stm.executeUpdate();		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}}
+	
+
 }

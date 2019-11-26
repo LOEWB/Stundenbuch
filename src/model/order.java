@@ -4,15 +4,19 @@ import java.sql.Date;
 
 public class order {
 	
-	public static Integer id_order;
+	public static Integer id;
 	public static Date date_order;
 	public static Integer id_client;
 	public static Integer price;
-	public static Integer getId_order() {
-		return id_order;
+	
+	
+	
+	
+	public static Integer getId() {
+		return id;
 	}
-	public static void setId_order(Integer id_order) {
-		order.id_order = id_order;
+	public static void setId(Integer id) {
+		order.id = id;
 	}
 	public static Date getDate_order() {
 		return date_order;

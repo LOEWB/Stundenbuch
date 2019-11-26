@@ -4,8 +4,10 @@ package model;
 public class supply {
 
 	
-	public static Integer id_supplier;
+	public static Integer id;
 	
+	
+
 	public static Integer id_article;
 	public static Integer quantity;
 	public static Integer price_article;
@@ -15,12 +17,14 @@ public class supply {
 	
 	public static String pays;
 
-	public static Integer getId_supplier() {
-		return id_supplier;
+
+	
+	public static Integer getId() {
+		return id;
 	}
 
-	public static void setId_supplier(Integer id_supplier) {
-		supply.id_supplier = id_supplier;
+	public static void setId(Integer id) {
+		supply.id = id;
 	}
 
 	public static Integer getId_article() {
