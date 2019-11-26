@@ -1,9 +1,5 @@
 package model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-
 public class product {
 	
 	private Long id_product;

@@ -17,9 +17,9 @@ public class View extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("templates/sample.fxml"));
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("templates/interface.fxml"));
         primaryStage.setTitle("Stundenbuch");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setScene(new Scene(root, 600, 400));
         primaryStage.show();
 
         fetching = new Fetching(new Controller());

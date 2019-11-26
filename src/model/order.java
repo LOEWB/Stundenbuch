@@ -2,11 +2,6 @@ package model;
 
 import java.sql.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-
-
 public class order {
 	
 	public static Integer id_order;
