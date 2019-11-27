@@ -22,7 +22,7 @@
                                     <xsd:complexType>
                                         <xsd:sequence>
                                             <xsd:element name="supplierId" type="xsd:integer"/>
-                                            <xsd:element name="articlesList" maxOccurs="unbounded">
+                                            <xsd:element name="articlesList">
                                                 <xsd:complexType>
                                                     <xsd:sequence>
                                                         <xsd:element name="article" maxOccurs="unbounded">

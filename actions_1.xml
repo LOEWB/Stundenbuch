@@ -65,32 +65,6 @@
                     </articlePrice>
                 </article>
             </articlesList>
-
-            <articlesList>
-                <article>
-                    <articleId>
-                        1123222
-                    </articleId>
-                    <quantity>
-                        10
-                    </quantity>
-                    <articlePrice>
-                        8.99
-                    </articlePrice>
-                </article>
-
-                <article>
-                    <articleId>
-                        1123222
-                    </articleId>
-                    <quantity>
-                        10
-                    </quantity>
-                    <articlePrice>
-                        8.99
-                    </articlePrice>
-                </article>
-            </articlesList>
         </supply>
     </action>
 </actions>
