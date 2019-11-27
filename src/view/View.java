@@ -15,20 +15,24 @@ import java.io.File;
 public class View extends Application {
 
     Fetching fetching;
+    Controller controller;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("templates/interface.fxml"));
         primaryStage.setTitle("Stundenbuch");
         primaryStage.setScene(new Scene(root, 600, 400));
+        primaryStage.setResizable(false);
         primaryStage.show();
 
-        fetching = new Fetching(new Controller());
-        new Thread(fetching, "fetching").start();
+        Controller controller = new Controller();
+
     }
 
     @Override
     public void stop() throws Exception {
-        fetching.interrupt();
+        controller.interrupt();
     }
+
+
 }

@@ -13,7 +13,7 @@ import static java.nio.file.StandardWatchEventKinds.*;
 
 public class Fetching implements Runnable {
 
-    private Controller controller;
+//    private Controller controller;
     private WatchService watcher = null;
     private WatchKey watchKey ;
     private boolean fetchingBool = true;
@@ -24,8 +24,8 @@ public class Fetching implements Runnable {
     private final static int QUEUE_SIZE = 100;
     private final static String STOP_MARKER = "INTERRUPT_QUEUE";
 
-    public Fetching(Controller c) {
-        this.controller = c;
+    public Fetching() {
+//        this.controller = c;
         try {
             this.watcher = FileSystems.getDefault().newWatchService();
         } catch (IOException e) {

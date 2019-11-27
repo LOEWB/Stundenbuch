@@ -40,7 +40,11 @@ public class Controller implements Initializable {
 
     private ObservableList<Article> dataA;
     private ConnectionBD co;
-    Fetching fetching;
+    private Fetching fetching;
+
+    public Controller() {
+
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -147,13 +151,22 @@ public class Controller implements Initializable {
         }}
 
 
+    public void setFetching(Fetching fetching) {
+        this.fetching = fetching;
+    }
+
     public void startTicket(ActionEvent actionEvent) {
 
         if (toggleStart.isSelected()) {
-			fetching.startFetching();
+            fetching = new Fetching();
+            new Thread(fetching, "fetching").start();
         }else{
-        	fetching.interrupt();
+            System.out.println("interupt");
+			fetching.interrupt();
 		}
     }
 
+    public void interrupt() {
+        fetching.interrupt();
+    }
 }
