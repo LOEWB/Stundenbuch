@@ -136,8 +136,8 @@ public class Controller implements Initializable {
 			  stm.setInt(1,art.getArticleId());
 			  stm.setInt(2,1);
 			  stm.setInt(3,6);
-			  stm.setInt(4,art.getPrice());
-			  stm.setInt(5,art.getQuantity());
+			  stm.setDouble(4,art.getPrice());
+			  stm.setDouble(5,art.getQuantity());
 			int row = stm.executeUpdate();
 		}
 		catch (SQLException e) {
@@ -152,15 +152,15 @@ public class Controller implements Initializable {
 		
 			try {
 				PreparedStatement stm = con.prepareStatement(sql);
-				stm.setInt(1,supplyTicket.getArticleSupply().getArticleId());
+				stm.setDouble(1,supplyTicket.getArticleSupply().getArticleId());
 				ResultSet rs = stm.executeQuery();
 				if(rs!=null) {
 					while(rs.next()) {
 						int quantity = rs.getInt("quantity");
 						if(quantity > 0) {
 							PreparedStatement st = con.prepareStatement(updateSQl);
-							st.setInt(1, supplyTicket.getArticleSupply().getQuantity());
-							st.setInt(2, supplyTicket.getArticleSupply().getArticleId());
+							st.setDouble(1, supplyTicket.getArticleSupply().getQuantity());
+							st.setDouble(2, supplyTicket.getArticleSupply().getArticleId());
 							int row = st.executeUpdate();
 						}
 					}
@@ -222,11 +222,8 @@ public class Controller implements Initializable {
 	public void startTicket(ActionEvent actionEvent) {
 	}
 
-<<<<<<< HEAD
 	public void stopTicket(ActionEvent actionEvent) {
 		fetching.interrupt();
 	}
 }
-=======
-}
->>>>>>> f7d64bb5bab5cc1e35a375b60f35286272881196
+
