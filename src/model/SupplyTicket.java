@@ -6,11 +6,11 @@ import java.util.List;
 public class SupplyTicket extends AbstractTicket {
 
     private int supplierId;
-    private List<ArticlesOrder> articlesOrders;
+    private ArticlesOrder articleOrder;
 
-    public SupplyTicket(int idTicket, LocalDateTime time, int supplierId, List<ArticlesOrder> articlesOrders) {
+    public SupplyTicket(int idTicket, LocalDateTime time, int supplierId, ArticlesOrder articleOrder) {
         super(idTicket, time);
         this.supplierId = supplierId;
-        this.articlesOrders = articlesOrders;
+        this.articleOrder = articleOrder;
     }
 }

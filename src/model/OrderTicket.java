@@ -6,11 +6,11 @@ import java.util.List;
 public class OrderTicket extends AbstractTicket {
 
     private int clientId;
-    private List<Integer> articlesIds;
+    private int articleId;
 
-    public OrderTicket(int idTicket, LocalDateTime time, int clientId, List<Integer> articlesIds) {
+    public OrderTicket(int idTicket, LocalDateTime time, int clientId, int articleId) {
         super(idTicket, time);
         this.clientId = clientId;
-        this.articlesIds = articlesIds;
+        this.articleId = articleId;
     }
 }
