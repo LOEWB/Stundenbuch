@@ -20,33 +20,16 @@ import java.util.ResourceBundle;
 public class Controller implements Initializable {
 
 	@FXML
-	public TableView<Customer> tableCustomer;
+	public TableView<Article> tableArticle;
 	@FXML
-	public TableColumn<Customer, String> columnFirstName;
+	public TableColumn<Article, Integer> columnId;
 	@FXML
-	public TableColumn<Customer, String> columnLastName;
+	public TableColumn<Article, Integer> columnIdTicket;
 	@FXML
-	public TableColumn<Customer, String> columnCountry;
+	public TableColumn<Article, Integer> columnPrice;
 	@FXML
-	public Button buttonLoadCustomer;
+	public TableColumn<Article, Integer> columnQuantity;
 
-	@FXML
-	public TableView<Provider> tableProvider;
-	@FXML
-	public TableColumn<Provider, String> columnCompany;
-	@FXML
-	public TableColumn<Provider, String> columnCity;
-	@FXML
-	public TableColumn<Provider, String> columnCountryP;
-	@FXML
-	public Button buttonLoadProvider;
-
-	@FXML
-	public TableView tableArticle;
-	@FXML
-	public TableColumn<Article, String> columnNameA;
-	@FXML
-	public TableColumn<Article, String> columnPrice;
 	@FXML
 	public Button buttonLoadArticle;
 
@@ -54,6 +37,8 @@ public class Controller implements Initializable {
 //    public ListView<Ticket> listTicket;
 	@FXML
 	public ToggleButton toggleStart;
+
+
 
 	private ObservableList<Customer> dataC;
 	private ObservableList<Provider> dataP;
@@ -66,64 +51,23 @@ public class Controller implements Initializable {
 		co=new ConnectionBD();
 	}
 
-	public void loadCustomerFromDatabase(ActionEvent actionEvent) {
-		try{
-			Connection con = co.connexion();
-			dataC = FXCollections.observableArrayList();
-			ResultSet rs = con.createStatement().executeQuery("SELECT * FROM customer");
-			while(rs.next()){
-				dataC.add(new Customer(rs.getString(2), rs.getString(3), rs.getString(4)));
-			}
-		} catch (SQLException e) {
-			System.err.println("Error" + e);
-		}
-
-		columnFirstName.setCellValueFactory(new PropertyValueFactory<Customer, String>("firstName"));
-		columnLastName.setCellValueFactory(new PropertyValueFactory<Customer, String>("lastName"));
-		columnCountry.setCellValueFactory(new PropertyValueFactory<Customer, String>("country"));
-
-		tableCustomer.setItems(null);
-		tableCustomer.setItems(dataC);
-	}
-
-	public void loadProviderFromDatabase(ActionEvent actionEvent) {
-		try {
-			Connection con = co.connexion();
-			dataP = FXCollections.observableArrayList();
-			ResultSet rs = con.createStatement().executeQuery("SELECT * FROM provider");
-			while (rs.next()){
-				dataP.add(new Provider(rs.getString(2), rs.getString(3), rs.getString(4)));
-			}
-		}catch (SQLException e){
-			System.err.println("Error" + e);
-		}
-
-		columnCompany.setCellValueFactory(new PropertyValueFactory<Provider, String>("company"));
-		columnCity.setCellValueFactory(new PropertyValueFactory<Provider, String>("city"));
-		columnCountryP.setCellValueFactory(new PropertyValueFactory<Provider, String>("country"));
-
-		tableProvider.setItems(null);
-		tableProvider.setItems(dataP);
-	}
-
 	public void loadArticleFromDatabase(ActionEvent actionEvent) {
 		try {
 			Connection con = co.connexion();
 			dataA = FXCollections.observableArrayList();
 			ResultSet rs = con.createStatement().executeQuery("SELECT * FROM artcle");
 			while (rs.next()){
-				dataA.add(new Article(rs.getString(2), rs.getString(3)));
+				dataA.add(new Article(rs.getInt(2), rs.getInt(3),rs.getInt(4), rs.getInt(5)));
 			}
 		}catch (SQLException e){
 			System.err.println("Error" + e);
 		}
 
-		columnNameA.setCellValueFactory((new PropertyValueFactory<Article, String>("name")));
-		columnPrice.setCellValueFactory(new PropertyValueFactory<Article, String>("price"));
+		columnId.setCellValueFactory((new PropertyValueFactory<Article, Integer>("id")));
+		columnIdTicket.setCellValueFactory(new PropertyValueFactory<Article, Integer>("idTicket"));
+		columnPrice.setCellValueFactory(new PropertyValueFactory<Article, Integer>("price"));
+		columnQuantity.setCellValueFactory(new PropertyValueFactory<Article, Integer>("quantity"));
 	}
-	
-	
-	
 
 	public void add_supply(supply sup) {
 		Connection con = new ConnectionBD().connexion();

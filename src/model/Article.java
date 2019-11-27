@@ -1,37 +1,55 @@
 package model;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class Article {
-	private final StringProperty nameA;
-	private final StringProperty price;
+	private final IntegerProperty id;
+	private final IntegerProperty idTicket;
+	private final IntegerProperty price;
+	private final IntegerProperty quantity;
 
-	public Article(String nameA, String price) {
-		this.nameA=new SimpleStringProperty(nameA);
-		this.price=new SimpleStringProperty(price);
+	public Article(Integer id, Integer idTicket, Integer price, Integer quantity) {
+		this.id=new SimpleIntegerProperty(id);
+		this.idTicket=new SimpleIntegerProperty(idTicket);
+		this.price=new SimpleIntegerProperty(price);
+		this.quantity=new SimpleIntegerProperty(quantity);
 	}
 
-	public String getNameA(){
-		return nameA.get();
+	public Integer getId(){
+		return id.get();
 	}
 
-	public String getPrice(){
-		return price.get();
+	public Integer getIdTicket(){ return  idTicket.get();}
+
+	public Integer getPrice(){ return price.get(); }
+
+	public Integer getQuantity(){ return  quantity.get(); }
+
+	public void setId(Integer value){ id.set(value);}
+
+	public void setIdTicket(Integer value){ idTicket.set(value);}
+
+	public void setPrice(Integer value){ price.set(value); }
+
+	public void setQuantity(Integer value){ quantity.set(value);}
+
+	public IntegerProperty idProperty(){
+		return id;
 	}
 
-	public void setNameA(String value){ nameA.set(value);}
-
-	public void setPrice(String value){
-		price.set(value);
+	public IntegerProperty idTicketProperty(){
+		return idTicket;
 	}
 
-	public StringProperty nameAProperty(){
-		return nameA;
-	}
-
-	public StringProperty priceProperty(){
+	public IntegerProperty priceProperty(){
 		return price;
+	}
+
+	public IntegerProperty quantityProperty(){
+		return quantity;
 	}
 }
 
