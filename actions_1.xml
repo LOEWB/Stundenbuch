@@ -76,5 +76,25 @@
                 </article>
             </articlesList>
         </supply>
+        <!-- another supplier action -->
+        <supply>
+            <supplierId>
+                900
+            </supplierId>
+
+            <articlesList>
+                <article>
+                    <articleId>
+                        1123222
+                    </articleId>
+                    <quantity>
+                        10
+                    </quantity>
+                    <articlePrice>
+                        8.99
+                    </articlePrice>
+                </article>
+            </articlesList>
+        </supply>
     </action>
 </actions>

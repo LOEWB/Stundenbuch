@@ -96,6 +96,7 @@ public class XmlHandling {
             Double clientId;
             Double articleId;
             OrderTicket orderTicket;
+
             for(int i = 0; i < orderList.getLength(); i++) {
                 clientId = (Double) xpath.evaluate("//order["+(i+1)+"]/clientId", e, XPathConstants.NUMBER);
                 articleList = (NodeList) xpath.evaluate("//order["+(i+1)+"]/articleId", e, XPathConstants.NODESET);
@@ -110,7 +111,17 @@ public class XmlHandling {
 
 
             //supply
+            Double supplierId;
+            NodeList supplyList;
+            Double quantity;
+            Double articlePrice;
 
+            supplyList = (NodeList) xpath.evaluate("//supply", e, XPathConstants.NODESET);
+
+            for(int i = 0; i < supplyList.getLength(); i++) {
+                supplierId = (Double) xpath.evaluate("//supply[" + (i + 1) + "]/supplierId", e, XPathConstants.NUMBER);
+                System.out.println("supplier : " + supplierId.intValue());
+            }
 
 
 //            for(int i = 0; i < actionList.getLength(); i++) {
