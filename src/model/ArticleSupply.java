@@ -11,4 +11,16 @@ public class ArticleSupply {
         this.quantity = quantity;
         this.price = price;
     }
+
+    public int getArticleId() {
+        return articleId;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
 }

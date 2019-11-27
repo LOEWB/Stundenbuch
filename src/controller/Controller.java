@@ -65,113 +65,86 @@ public class Controller implements Initializable {
         columnQuantity.setCellValueFactory(new PropertyValueFactory<Article, Integer>("quantity"));
     }
 
-    public void add_supply(supply sup) {
+    public void add_article(ArticleSupply art) {
         Connection con = new ConnectionBD().connexion();
-        String sql = "inser into supply(id,id_article,quantity,price_article,city,country)" + " values (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "insert into article(id,id_ticket,id_produit,price,quantity)"  + " values ( ?, ?, ?, ?, ?)";
         try {
             PreparedStatement stm = con.prepareStatement(sql);
-            stm.setInt(1, supply.id);
-            stm.setInt(2, supply.id_article);
-            stm.setInt(3, supply.quantity);
-            stm.setInt(4, supply.price_article);
-            stm.setString(5, supply.city);
-            stm.setString(6, supply.country);
-
+            stm.setInt(1,art.getArticleId());
+            stm.setInt(2,1);
+            stm.setInt(3,6);
+            stm.setDouble(4,art.getPrice());
+            stm.setDouble(5,art.getQuantity());
             int row = stm.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
-    }
-
-    public void update_supply(supply sup) {
-        Connection con = new ConnectionBD().connexion();
-
-        String sql = "update sup set id= ?,id_article=?,quantity = ?,price_article = ?,city=?,country=? where id= ?";
-
-        try {
-            PreparedStatement stm = con.prepareStatement(sql);
-            stm.setInt(1, supply.id);
-            stm.setInt(2, supply.id_article);
-            stm.setInt(3, supply.quantity);
-            stm.setInt(4, supply.price_article);
-            stm.setString(5, supply.city);
-            stm.setString(6, supply.country);
-
-            int row = stm.executeUpdate();
-        } catch (SQLException e) {
+        catch (SQLException e) {
             e.printStackTrace();
-        }
-    }
+        }}
 
-    public void delete_supply(supply sup) {
+    public void newSupply(SupplyTicket supplyTicket) {
+
         Connection con = new ConnectionBD().connexion();
-
-        String sql = "delete from supply where id= ?";
+        String sql = "SELECT id FROM article where id=?";
+        String updateSQl="update set quantity = quantity + ? from article where id= ? ";
 
         try {
             PreparedStatement stm = con.prepareStatement(sql);
-            stm.setInt(1, supply.id);
+            stm.setDouble(1,supplyTicket.getArticleSupply().getArticleId());
+            ResultSet rs = stm.executeQuery();
+            if(rs!=null) {
+                while(rs.next()) {
+                    int quantity = rs.getInt("quantity");
+                    if(quantity > 0) {
+                        PreparedStatement st = con.prepareStatement(updateSQl);
+                        st.setDouble(1, supplyTicket.getArticleSupply().getQuantity());
+                        st.setDouble(2, supplyTicket.getArticleSupply().getArticleId());
+                        int row = st.executeUpdate();
+                    }
+                }
+            }else {
+                this.add_article(supplyTicket.getArticleSupply());
 
-
-            int row = stm.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void add_order(order ord) {
-        Connection con = new ConnectionBD().connexion();
-
-        String sql = "inser into order(id,date_order,id_customer,price)" + " values (?, ?, ?, ?, ?)";
-
-        try {
-            PreparedStatement stm = con.prepareStatement(sql);
-            stm.setInt(1, order.id);
-            stm.setDate(2, order.date_order);
-            stm.setInt(3, order.id_customer);
-            stm.setInt(4, order.price);
-
-            int row = stm.executeUpdate();
+            }
 
 
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-    }
+        }}
 
-    public void update_order(order ord) {
+
+
+
+
+
+
+    public void newOrder(OrderTicket orderTicket) {
+
         Connection con = new ConnectionBD().connexion();
-
-        String sql = "update ord set id = ?,date_order = ?,id_customer = ?,price = ? where id= ?";
+        String sql = "SELECT id FROM article where id=?";
+        String updateSQl="update set quantity = quantity -1 from article where id= ? ";
 
         try {
             PreparedStatement stm = con.prepareStatement(sql);
-            stm.setInt(1, order.id);
-            stm.setDate(2, order.date_order);
-            stm.setInt(3, order.id_customer);
-            stm.setInt(4, order.price);
+            stm.setInt(1,orderTicket.getArticleId());
+            ResultSet rs = stm.executeQuery();
+            if(rs!=null) {
+                while(rs.next()) {
+                    int quantity = rs.getInt("quantity");
+                    if(quantity > 0) {
+                        PreparedStatement st = con.prepareStatement(updateSQl);
+                        st.setInt(2,orderTicket.getArticleId() );
 
-            int row = stm.executeUpdate();
+                        int row = st.executeUpdate();
+                    }
+                }
+            }else {
+                System.out.println("Article not found");
+            }
+
 
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-    }
-
-
-    public void delete_order(order ord) {
-        Connection con = new ConnectionBD().connexion();
-
-        String sql = "delete from supply where id= ?";
-
-        try {
-            PreparedStatement stm = con.prepareStatement(sql);
-            stm.setInt(1, order.id);
-            int row = stm.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+        }}
 
 
     public void startTicket(ActionEvent actionEvent) {

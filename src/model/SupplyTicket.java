@@ -12,4 +12,12 @@ public class SupplyTicket extends AbstractTicket {
         this.supplierId = supplierId;
         this.articleSupply = articleSupply;
     }
+
+    public int getSupplierId() {
+        return supplierId;
+    }
+
+    public ArticleSupply getArticleSupply() {
+        return articleSupply;
+    }
 }
