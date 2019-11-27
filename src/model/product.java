@@ -8,8 +8,7 @@ public class product {
 	private supply supplier;
 	private Integer price;
 	private Boolean disp;
-	
-	
+
 	
 	public String getNom() {
 		return nom;

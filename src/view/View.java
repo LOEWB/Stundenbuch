@@ -8,7 +8,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import model.Fetching;
-import model.Ticket;
 import model.XmlHandling;
 
 import java.io.File;

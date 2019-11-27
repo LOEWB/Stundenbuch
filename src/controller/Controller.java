@@ -50,8 +50,8 @@ public class Controller implements Initializable {
 	@FXML
 	public Button buttonLoadArticle;
 
-	@FXML
-    public ListView<Ticket> listTicket;
+//	@FXML
+//    public ListView<Ticket> listTicket;
 	@FXML
 	public ToggleButton toggleStart;
 	@FXML
