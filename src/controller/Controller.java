@@ -6,9 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.*;
 
@@ -52,10 +50,18 @@ public class Controller implements Initializable {
 	@FXML
 	public Button buttonLoadArticle;
 
+	@FXML
+    public ListView<Ticket> listTicket;
+	@FXML
+	public ToggleButton toggleStart;
+	@FXML
+	public ToggleButton toggleStop;
+
 	private ObservableList<Customer> dataC;
 	private ObservableList<Provider> dataP;
 	private  ObservableList<Article> dataA;
 	private ConnectionBD co;
+	Fetching fetching;
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -237,6 +243,13 @@ public class Controller implements Initializable {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}}
-	
 
+
+	public void startTicket(ActionEvent actionEvent) {
+		fetching.startFetching();
+	}
+
+	public void stopTicket(ActionEvent actionEvent) {
+		fetching.interrupt();
+	}
 }

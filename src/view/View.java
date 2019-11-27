@@ -5,8 +5,10 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import model.Fetching;
+import model.Ticket;
 import model.XmlHandling;
 
 import java.io.File;
@@ -24,7 +26,6 @@ public class View extends Application {
 
         fetching = new Fetching(new Controller());
         new Thread(fetching, "fetching").start();
-
     }
 
     @Override

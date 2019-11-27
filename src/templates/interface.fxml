@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
+
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="controller.Controller">
   <children>
     <TabPane layoutX="14.0" layoutY="14.0" prefHeight="362.9999000000025" prefWidth="572.0" tabClosingPolicy="UNAVAILABLE">
       <tabs>
+        <Tab text="Ticket feed">
+          <content>
+            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              <children>
+                <ListView fx:id="listTicket" layoutX="14.0" layoutY="14.0" orientation="VERTICAL" prefHeight="274.0" prefWidth="544.0" />
+                <ToggleButton fx:id="toggleStart" layoutX="193.0" layoutY="298.0" mnemonicParsing="false" onAction="#startTicket" text="Start" />
+                <ToggleButton id="toggle" fx:id="toggleStop" layoutX="286.0" layoutY="298.0" mnemonicParsing="false" onAction="#stopTicket" text="Stop" />
+              </children>
+            </AnchorPane>
+          </content>
+        </Tab>
         <Tab text="Customer">
           <content>
             <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
