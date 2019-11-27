@@ -123,13 +123,16 @@ public class Controller implements Initializable {
 
 	public void add_supply(supply sup) {
 		Connection con = new ConnectionBD().connexion();
-		String sql = "inser into order(id,id_article,quantity,price_article)"  + " values (?, ?, ?, ?, ?)";
+		String sql = "inser into order(id,id_article,quantity,price_article,city,country)"  + " values (?, ?, ?, ?, ?, ?, ?)";
 		try {
 			PreparedStatement stm = con.prepareStatement(sql);
 			stm.setInt(1,supply.id);
 			stm.setInt(2,supply.id_article);
 			stm.setInt(3,supply.quantity);
 			stm.setInt(4,supply.price_article);
+			stm.setString(5,supply.city);
+			stm.setString(6,supply.country);
+
 			int row = stm.executeUpdate();
 		}
 		catch (SQLException e) {
@@ -142,7 +145,7 @@ public class Controller implements Initializable {
 	public void update_supply(supply sup) {
 		Connection con = new ConnectionBD().connexion();
 		
-		String sql = "update sup set id= ?,id_article=?,quantity = ?,price_article = ? where id= ?";
+		String sql = "update sup set id= ?,id_article=?,quantity = ?,price_article = ?,city=?,country=? where id= ?";
 
 		try {
 			PreparedStatement stm = con.prepareStatement(sql);
@@ -150,6 +153,9 @@ public class Controller implements Initializable {
 			stm.setInt(2,supply.id_article);
 			stm.setInt(3,supply.quantity);
 			stm.setInt(4,supply.price_article);
+			stm.setString(5,supply.city);
+			stm.setString(6,supply.country);
+
 			int row = stm.executeUpdate();
 		}
 		catch (SQLException e) {
@@ -181,14 +187,14 @@ public class Controller implements Initializable {
 	public void add_order(order ord) {
 		Connection con = new ConnectionBD().connexion();
 		
-		String sql = "inser into order(id,date_order,id_client,price)"  + " values (?, ?, ?, ?, ?)";
+		String sql = "inser into order(id,date_order,id_customer,price)"  + " values (?, ?, ?, ?, ?)";
 
 
 		try {
 			PreparedStatement stm = con.prepareStatement(sql);
 			stm.setInt(1,order.id);
 			stm.setDate(2,order.date_order);
-			stm.setInt(3,order.id_client);
+			stm.setInt(3,order.id_customer);
 			stm.setInt(4,order.price);
 			
 			int row = stm.executeUpdate();
@@ -202,13 +208,13 @@ public class Controller implements Initializable {
 	public void update_order(order ord) {
 		Connection con = new ConnectionBD().connexion();
 		
-		String sql = "update ord set id = ?,date_order = ?,id_client = ?,price = ? where id= ?";
+		String sql = "update ord set id = ?,date_order = ?,id_customer = ?,price = ? where id= ?";
 
 		try {
 			PreparedStatement stm = con.prepareStatement(sql);
 			stm.setInt(1,order.id);
 			stm.setDate(2,order.date_order);
-			stm.setInt(3,order.id_client);
+			stm.setInt(3,order.id_customer);
 			stm.setInt(4,order.price);
 			
 			int row = stm.executeUpdate();

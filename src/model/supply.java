@@ -5,17 +5,13 @@ public class supply {
 
 	
 	public static Integer id;
-	
-	
-
 	public static Integer id_article;
 	public static Integer quantity;
 	public static Integer price_article;
 
 	
-	public static String ville;
-	
-	public static String pays;
+	public static String city;
+	public static String country;
 
 
 	
@@ -51,22 +47,21 @@ public class supply {
 		supply.price_article = price_article;
 	}
 
-	public static String getVille() {
-		return ville;
-	}
-
-	public static void setVille(String ville) {
-		supply.ville = ville;
-	}
-
-	public static String getPays() {
-		return pays;
-	}
-
-	public static void setPays(String pays) {
-		supply.pays = pays;
-	}
 	
-	
+	public static String getCity() {
+		return city;
+	}
+
+	public static void setCity(String city) {
+		supply.city = city;
+	}
+
+	public static String getCountry() {
+		return country;
+	}
+
+	public static void setCountry(String country) {
+		supply.country = country;
+	}
 	
 }
