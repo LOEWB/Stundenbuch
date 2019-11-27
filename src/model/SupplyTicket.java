@@ -1,16 +1,15 @@
 package model;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 public class SupplyTicket extends AbstractTicket {
 
     private int supplierId;
-    private ArticlesOrder articleOrder;
+    private ArticleSupply articleSupply;
 
-    public SupplyTicket(int idTicket, LocalDateTime time, int supplierId, ArticlesOrder articleOrder) {
+    public SupplyTicket(int idTicket, LocalDateTime time, int supplierId, ArticleSupply articleSupply) {
         super(idTicket, time);
         this.supplierId = supplierId;
-        this.articleOrder = articleOrder;
+        this.articleSupply = articleSupply;
     }
 }
