@@ -214,11 +214,6 @@ public class Controller implements Initializable {
 
 
 
-
-
-
-
-
 	public void startTicket(ActionEvent actionEvent) {
 	}
 
