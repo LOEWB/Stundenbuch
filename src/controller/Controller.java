@@ -123,7 +123,7 @@ public class Controller implements Initializable {
 
 	public void add_supply(supply sup) {
 		Connection con = new ConnectionBD().connexion();
-		String sql = "inser into order(id,id_article,quantity,price_article,city,country)"  + " values (?, ?, ?, ?, ?, ?, ?)";
+		String sql = "inser into supply(id,id_article,quantity,price_article,city,country)"  + " values (?, ?, ?, ?, ?, ?, ?)";
 		try {
 			PreparedStatement stm = con.prepareStatement(sql);
 			stm.setInt(1,supply.id);
