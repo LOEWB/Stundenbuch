@@ -10,7 +10,7 @@ public class ConnectionBD {
 	public static String user =  "root" ; 
     public static  String password =  "";
     public static String protocole =  "jdbc:mysql:" ;
-    public static String DATABASE  =  "projet?useLegacyDatetimeCode=false&serverTimezone=America/New_York";
+    public static String DATABASE  =  "project?useLegacyDatetimeCode=false&serverTimezone=America/New_York";
     public static String port = "3306";
     private  Connection con;
     
