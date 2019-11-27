@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
+<?import java.net.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -14,8 +15,11 @@
             <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
               <children>
                 <ListView fx:id="listTicket" layoutX="14.0" layoutY="14.0" orientation="VERTICAL" prefHeight="274.0" prefWidth="544.0" />
-                <ToggleButton fx:id="toggleStart" layoutX="193.0" layoutY="298.0" mnemonicParsing="false" onAction="#startTicket" text="Start" />
-                <ToggleButton id="toggle" fx:id="toggleStop" layoutX="286.0" layoutY="298.0" mnemonicParsing="false" onAction="#stopTicket" text="Stop" />
+                <ToggleButton fx:id="toggleStart" layoutX="256.0" layoutY="295.0" mnemonicParsing="false" onAction="#startTicket" prefHeight="33.0" prefWidth="60.0" text="">
+                  <stylesheets>
+                    <URL value="@toggleButton.css" />
+                  </stylesheets>
+                </ToggleButton>
               </children>
             </AnchorPane>
           </content>
