@@ -54,8 +54,6 @@ public class Controller implements Initializable {
 //    public ListView<Ticket> listTicket;
 	@FXML
 	public ToggleButton toggleStart;
-	@FXML
-	public ToggleButton toggleStop;
 
 	private ObservableList<Customer> dataC;
 	private ObservableList<Provider> dataP;
@@ -222,10 +220,13 @@ public class Controller implements Initializable {
 
 
 	public void startTicket(ActionEvent actionEvent) {
-		fetching.startFetching();
 	}
 
+<<<<<<< HEAD
 	public void stopTicket(ActionEvent actionEvent) {
 		fetching.interrupt();
 	}
 }
+=======
+}
+>>>>>>> f7d64bb5bab5cc1e35a375b60f35286272881196

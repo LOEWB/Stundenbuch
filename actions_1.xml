@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 
-<actions id="1">
+<actions id="4">
     <!-- clients orders -->
     <action>
         <!-- a client order -->
         <order>
             <clientId>
-                135
+                136
             </clientId>
 
             <articleId>
@@ -28,6 +28,16 @@
 
             <articleId>
                 2902398
+            </articleId>
+        </order>
+        <!-- another client order -->
+        <order>
+            <clientId>
+                12
+            </clientId>
+
+            <articleId>
+                4623987
             </articleId>
         </order>
     </action>
@@ -53,6 +63,26 @@
                     </articlePrice>
                 </article>
 
+                <article>
+                    <articleId>
+                        1123222
+                    </articleId>
+                    <quantity>
+                        10
+                    </quantity>
+                    <articlePrice>
+                        8.99
+                    </articlePrice>
+                </article>
+            </articlesList>
+        </supply>
+        <!-- another supplier action -->
+        <supply>
+            <supplierId>
+                900
+            </supplierId>
+
+            <articlesList>
                 <article>
                     <articleId>
                         1123222
