@@ -111,25 +111,32 @@ public class XmlHandling {
 
 
             //supply
-            Double supplierId;
+            System.out.println("\n\n\t -- SUPPLY -- \n");
             NodeList supplyList;
-            Double quantity;
             Double articlePrice;
+            Double articleQuantity;
+            SupplyTicket supplyTicket;
 
             supplyList = (NodeList) xpath.evaluate("//supply", e, XPathConstants.NODESET);
 
             for(int i = 0; i < supplyList.getLength(); i++) {
-                supplierId = (Double) xpath.evaluate("//supply[" + (i + 1) + "]/supplierId", e, XPathConstants.NUMBER);
+                Double supplierId;
+                Double quantity;
+                supplierId = (Double) xpath.evaluate("//supply["+(i+1)+"]/supplierId", e, XPathConstants.NUMBER);
+                articleList = (NodeList) xpath.evaluate("//supply["+(i+1)+"]//article", e, XPathConstants.NODESET);
                 System.out.println("supplier : " + supplierId.intValue());
+                //loop on articles
+                for(int j = 0; j < articleList.getLength(); j++) {
+                    articleId = (Double) xpath.evaluate("//supply["+(i+1)+"]//article["+(j+1)+"]/articleId", e, XPathConstants.NUMBER);
+                    System.out.println("    article : " + articleId.intValue());
+                    articlePrice = (Double) xpath.evaluate("//supply["+(i+1)+"]//article["+(j+1)+"]/articlePrice", e, XPathConstants.NUMBER);
+                    System.out.println("    price : " + articlePrice);
+                    articleQuantity = (Double) xpath.evaluate("//supply["+(i+1)+"]//article["+(j+1)+"]/quantity", e, XPathConstants.NUMBER);
+                    System.out.println("    quantity : " + articleQuantity.intValue());
+                    supplyTicket = new SupplyTicket(idTicket.intValue(), LocalDateTime.now(), supplierId.intValue(), new ArticleSupply(articleId.intValue(), articleQuantity.intValue(), articlePrice));
+                }
             }
 
-
-//            for(int i = 0; i < actionList.getLength(); i++) {
-//                tmp = ((NodeList) xpath.evaluate("/action["+i+1+"]", actionList.item(i), XPathConstants.NODESET));
-//                //nature = tmp.item(1).getTextContent();
-//                System.out.println("nature " + tmp.getLength());
-//            }
-//            System.out.println(actionList.getLength() + " actions ");
 
         } catch (XPathExpressionException ex) {
             ex.printStackTrace();
