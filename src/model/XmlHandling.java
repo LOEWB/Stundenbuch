@@ -137,6 +137,7 @@ public class XmlHandling {
                     articleQuantity = (Double) xpath.evaluate("//supply["+(i+1)+"]//article["+(j+1)+"]/quantity", e, XPathConstants.NUMBER);
                     System.out.println("    quantity : " + articleQuantity.intValue());
                     supplyTicket = new SupplyTicket(idTicket.intValue(), LocalDateTime.now(), supplierId.intValue(), new ArticleSupply(articleId.intValue(), articleQuantity.intValue(), articlePrice));
+                    this.controller.newSupplyTicket(supplyTicket);
                 }
             }
 

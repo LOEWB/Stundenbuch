@@ -40,6 +40,8 @@ public class Controller implements Initializable {
     public ListView<OrderTicket> listTicket;
     @FXML
     public ToggleButton toggleStart;
+    @FXML
+    public ListView<SupplyTicket> listTicket2;
 
     private ObservableList<Article> dataA;
     private ConnectionBD co;
@@ -73,7 +75,7 @@ public class Controller implements Initializable {
                         super.updateItem(item, empty);
                         setText(null);
                         if (!empty && item != null) {
-                            final String text = String.format("ORDER -> Ticket :%d \t Date: " + item.getTime().format(DateTimeFormatter.ofPattern("HH:mm")) + "\t ClientId: %d \t ArticleId: %d", 1, item.getClientId(), item.getArticleId());
+                            final String text = String.format("ORDER -> Ticket :%d \t Date: " + item.getTime().format(DateTimeFormatter.ofPattern("HH:mm")) + "\t ClientId: %d \t ArticleId: %d", item.getIdTicket(), item.getClientId(), item.getArticleId());
                             setText(text);
                         }
                     }
@@ -81,11 +83,37 @@ public class Controller implements Initializable {
                 return cell;
             }
         });
+
+        listTicket2.setCellFactory(new Callback<ListView<SupplyTicket>, ListCell<SupplyTicket>>() {
+            @Override
+            public ListCell<SupplyTicket> call(ListView<SupplyTicket> orderTicketListView) {
+                ListCell<SupplyTicket> cell = new ListCell<SupplyTicket>(){
+                    @Override
+                    protected void updateItem(SupplyTicket item, boolean empty) {
+                        super.updateItem(item, empty);
+                        setText(null);
+                        if (!empty && item != null) {
+                            final String text = String.format("Supply -> Ticket :%d \t Date: " + item.getTime().format(DateTimeFormatter.ofPattern("HH:mm")) + "\t SupplierId: %d \t ARTICLE: Id: %d Quantity: %d Price: %f",
+                                    item.getIdTicket(), item.getSupplierId(), item.getArticleSupply().getArticleId(), item.getArticleSupply().getQuantity(), item.getArticleSupply().getPrice());
+                            setText(text);
+                        }
+                    }
+                };
+                return cell;
+            }
+        });
+
+
     }
 
     public void newOrderTicket(OrderTicket ot){
-        list.add(ot);
+        list.add(0,ot);
         listTicket.getItems().addAll(ot);
+    }
+
+    public void newSupplyTicket(SupplyTicket st){
+        list.add(0,st);
+        listTicket2.getItems().addAll(st);
     }
 
     public void loadArticleFromDatabase(ActionEvent actionEvent) {
