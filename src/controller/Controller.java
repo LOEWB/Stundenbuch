@@ -15,6 +15,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
@@ -41,6 +42,7 @@ public class Controller implements Initializable {
     private ObservableList<Article> dataA;
     private ConnectionBD co;
     private Fetching fetching;
+    private Thread fetchingThread;
 
     public Controller() {
 
@@ -115,15 +117,10 @@ public class Controller implements Initializable {
             e.printStackTrace();
         }}
 
-
-
-
-
-
-
     public void newOrder(OrderTicket orderTicket) {
 
-        Connection con = new ConnectionBD().connexion();
+        co = new ConnectionBD();
+        Connection con = co.connexion();
         String sql = "SELECT id FROM article where id=?";
         String updateSQl="update set quantity = quantity -1 from article where id= ? ";
 
@@ -151,22 +148,25 @@ public class Controller implements Initializable {
         }}
 
 
-    public void setFetching(Fetching fetching) {
-        this.fetching = fetching;
-    }
-
     public void startTicket(ActionEvent actionEvent) {
 
         if (toggleStart.isSelected()) {
             fetching = new Fetching();
-            new Thread(fetching, "fetching").start();
+            fetchingThread = new Thread(fetching, "fetching");
+            fetchingThread.start();
+
+            //newOrder(new OrderTicket(1, LocalDateTime.now(), 15, 20));
         }else{
             System.out.println("interupt");
 			fetching.interrupt();
 		}
     }
 
-    public void interrupt() {
-        fetching.interrupt();
+    @FXML
+    public void exitApplication(ActionEvent event) {
+        if(!(fetching == null))
+        {
+            fetching.interrupt();
+        }
     }
 }

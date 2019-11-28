@@ -25,13 +25,12 @@ public class View extends Application {
         primaryStage.setResizable(false);
         primaryStage.show();
 
-        Controller controller = new Controller();
+        controller = new Controller();
 
     }
 
     @Override
     public void stop() throws Exception {
-        controller.interrupt();
     }
 
 
