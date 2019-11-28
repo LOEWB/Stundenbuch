@@ -1,10 +1,9 @@
 package model;
 
+import controller.Controller;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 
 import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
@@ -33,8 +32,10 @@ public class XmlHandling {
     private DocumentBuilderFactory factory;
     private DocumentBuilder builder;
     private Element root;
+    private Controller controller;
 
-    public XmlHandling() {
+    public XmlHandling(Controller controller) {
+        this.controller = controller;
         xsdFile = new File("xsd.xml");
         Schema schema;
         SchemaFactory schemaFactory;
@@ -79,6 +80,7 @@ public class XmlHandling {
     }
 
     private void processXpath(Element e) {
+
         XPathFactory xpathFactory = XPathFactory.newInstance();
         XPath xpath = xpathFactory.newXPath();
         NodeList orderList;
@@ -106,6 +108,7 @@ public class XmlHandling {
                     articleId = (Double) xpath.evaluate("//order["+(i+1)+"]/articleId["+(j+1)+"]", e, XPathConstants.NUMBER);
                     System.out.println("    article : " + articleId.intValue());
                     orderTicket = new OrderTicket(idTicket.intValue(), LocalDateTime.now(), clientId.intValue(), articleId.intValue());
+                    this.controller.newOrderTicket(orderTicket);
                 }
             }
 

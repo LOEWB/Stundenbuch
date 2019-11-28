@@ -184,9 +184,9 @@ public class Controller implements Initializable {
 
 
     public void startTicket(ActionEvent actionEvent) {
-        newOrderTicket(new OrderTicket(5, LocalDateTime.now(),45,39));
+        //newOrderTicket(new OrderTicket(5, LocalDateTime.now(),45,39));
         if (toggleStart.isSelected()) {
-            fetching = new Fetching();
+            fetching = new Fetching(this);
             fetchingThread = new Thread(fetching, "fetching");
             fetchingThread.start();
 

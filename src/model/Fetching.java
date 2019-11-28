@@ -5,8 +5,7 @@ import controller.Controller;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
-import java.util.Observer;
-import java.util.Queue;
+import java.time.LocalDateTime;
 import java.util.concurrent.ArrayBlockingQueue;
 
 import static java.nio.file.StandardWatchEventKinds.*;
@@ -24,8 +23,10 @@ public class Fetching implements Runnable {
     private final static int QUEUE_SIZE = 100;
     private final static String STOP_MARKER = "INTERRUPT_QUEUE";
 
-    public Fetching() {
-//        this.controller = c;
+    private Controller controller;
+
+    public Fetching(Controller c) {
+        this.controller = c;
         try {
             this.watcher = FileSystems.getDefault().newWatchService();
         } catch (IOException e) {
@@ -78,7 +79,7 @@ public class Fetching implements Runnable {
     }
 
     private void startQueueProcessing() {
-        xmlHandler = new XmlHandling();
+        xmlHandler = new XmlHandling(controller);
 
         new Thread(() -> {
             File currFile;
@@ -98,7 +99,7 @@ public class Fetching implements Runnable {
 
     @Override
     public void run() {
-        xmlHandler = new XmlHandling();
+        xmlHandler = new XmlHandling(controller);
         actionPathQueue = new ArrayBlockingQueue<>(QUEUE_SIZE);
         startQueueProcessing();
         startFetching();
