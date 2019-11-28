@@ -14,6 +14,9 @@ public class OrderTicket extends AbstractTicket {
         this.articleId = articleId;
     }
 
+    public int getClientId() {
+        return clientId;
+    }
     public int getArticleId() {
         return articleId;
     }

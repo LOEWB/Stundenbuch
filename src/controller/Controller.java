@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Callback;
 import model.*;
 
 import java.net.URL;
@@ -16,6 +17,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
@@ -34,8 +36,8 @@ public class Controller implements Initializable {
     @FXML
     public Button buttonLoadArticle;
 
-    //	@FXML
-//    public ListView<Ticket> listTicket;
+    @FXML
+    public ListView<OrderTicket> listTicket;
     @FXML
     public ToggleButton toggleStart;
 
@@ -43,14 +45,47 @@ public class Controller implements Initializable {
     private ConnectionBD co;
     private Fetching fetching;
     private Thread fetchingThread;
-
+    ObservableList list=FXCollections.observableArrayList();
     public Controller() {
 
     }
 
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         co = new ConnectionBD();
+        feedList();
+    }
+
+    public void feedList(){
+        list.removeAll(list);
+        //OrderTicket ot1 = new OrderTicket(1,LocalDateTime.now() ,12,9);
+        //list.add(ot1);
+
+        //listTicket.getItems().addAll(list);
+        listTicket.setCellFactory(new Callback<ListView<OrderTicket>, ListCell<OrderTicket>>() {
+            @Override
+            public ListCell<OrderTicket> call(ListView<OrderTicket> orderTicketListView) {
+                ListCell<OrderTicket> cell = new ListCell<OrderTicket>(){
+                    @Override
+                    protected void updateItem(OrderTicket item, boolean empty) {
+                        super.updateItem(item, empty);
+                        setText(null);
+                        if (!empty && item != null) {
+                            final String text = String.format("ORDER -> Ticket :%d \t Date: " + item.getTime().format(DateTimeFormatter.ofPattern("HH:mm")) + "\t ClientId: %d \t ArticleId: %d", 1, item.getClientId(), item.getArticleId());
+                            setText(text);
+                        }
+                    }
+                };
+                return cell;
+            }
+        });
+    }
+
+    public void newOrderTicket(OrderTicket ot){
+        list.add(ot);
+        listTicket.getItems().addAll(ot);
     }
 
     public void loadArticleFromDatabase(ActionEvent actionEvent) {
@@ -149,7 +184,7 @@ public class Controller implements Initializable {
 
 
     public void startTicket(ActionEvent actionEvent) {
-
+        newOrderTicket(new OrderTicket(5, LocalDateTime.now(),45,39));
         if (toggleStart.isSelected()) {
             fetching = new Fetching();
             fetchingThread = new Thread(fetching, "fetching");

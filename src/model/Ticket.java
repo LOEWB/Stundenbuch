@@ -15,4 +15,7 @@ abstract class AbstractTicket {
         this.idTicket = idTicket;
         this.time = time;
     }
+
+    public int getIdTicket(){ return idTicket; }
+    public LocalDateTime getTime(){ return time; }
 }
